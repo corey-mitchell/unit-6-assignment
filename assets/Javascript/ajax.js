@@ -1,0 +1,3 @@
+// Initial Variables
+
+var topics = [];
