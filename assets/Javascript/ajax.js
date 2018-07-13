@@ -32,20 +32,23 @@ $(document).ready(function () {
     // Activates and Controls Topic Buttons
     $(document).on('click', '.topicButtons', function(event) {
         $("#topicGIFs").empty()
-        console.log(event)
-        console.log(event.target.id)
 
         // Places User Click Into Giphy API
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=AttVip230BugV7EkTVWyqtcdLXTohkOw&q=" + event.target.id + "&limit=10&offset=0&rating=PG&lang=en"
 
         // API Function
-        $.get(queryURL).then(function(response) {
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+          }).then(function(response) {
             console.log(response)
-            console.log(response.data[0].embed_url)
+            // console.log(response.data[0].url)
+
+
 
             // Loop for Displaying GIF Responses
             for (var i = 0; i < response.data.length; i++) {
-                $("#topicGIFs").append(`<div class='col-3'><p>Rating: ${response.data[i].rating}</p><img src='${response.data[i].embed_url}' class='GIFs' height='200px' width='200px'></div>`)
+                $("#topicGIFs").append(`<div class='col-3'><p>Rating: ${response.data[i].rating}</p><img src='${response.data[i].url}' class='GIFs' height='200px' width='200px'></div>`)
             }
 
         })
