@@ -1,6 +1,6 @@
 // Initial Variables
 var topics = ["batman", "superman", "spiderman", "john wayne"];
-var userTopics = $("#topicInput")
+var userTopics = $("#topicInput");
 
 
 // Document Ready
@@ -31,6 +31,8 @@ $(document).ready(function () {
 
     // Activates and Controls Topic Buttons
     $(document).on('click', '.topicButtons', function(event) {
+        $("#topicGIFs").empty()
+        console.log(event)
         console.log(event.target.id)
 
         // Places User Click Into Giphy API
@@ -39,10 +41,15 @@ $(document).ready(function () {
         // API Function
         $.get(queryURL).then(function(response) {
             console.log(response)
+            console.log(response.data[0].embed_url)
+
+            // Loop for Displaying GIF Responses
+            for (var i = 0; i < response.data.length; i++) {
+                $("#topicGIFs").append(`<div class='col-3'><p>Rating: ${response.data[i].rating}</p><img src='${response.data[i].embed_url}' class='GIFs' height='200px' width='200px'></div>`)
+            }
 
         })
 
     })
-
 
 });

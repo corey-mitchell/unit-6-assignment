@@ -14,20 +14,25 @@
     </head>
 
     <body>
-        <!-- Where buttons will display -->
-        <div id="topicButtons"></div>
+        <div class="container">
+            <div class="row">
+                <!-- Where buttons will display -->
+                <div id="topicButtons" class="col-9"></div>
 
-        <!-- Where add form will display -->
-        <form>
-            <label for="topicInput">Add Topic Here</label>
-            <input id="topicInput" type="text">
+                <!-- Where add form will display -->
+                <form class="col-3">
+                    <label for="topicInput">Add Topic Here</label>
+                    <input id="topicInput" type="text">
 
-            <button id="submitButton">Submit</button>
+                    <button id="submitButton">Submit</button>
 
-        </form>
+                </form>
+            </div>
 
-        <!-- Where GIFs will display -->
-        <div id="topicGiFs"></div>
+            <!-- Where GIFs will display -->
+            <div id="topicGIFs" class="row"></div>
+
+        </div>
 
     </body>
 
