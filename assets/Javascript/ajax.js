@@ -1,5 +1,5 @@
 // Initial Variables
-var topics = ["batman", "superman", "spiderman", "john wayne"];
+var topics = ["Full Metal Alchemist", "Samurai Champloo", "Elfen Lied", "Black Lagoon", "My Hero Academia", "Samurai Jack", "Pokemon", "Eureka Seven", "Kill La Kill", "Guren Lagann", "Ghost in the Shell", "Trigun", "Inuyasha"];
 var userTopics = $("#topicInput");
 
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
     $(document).on('click', '.topicButtons', function(event) {
         $("#topicGIFs").empty()
 
-        // Places User Click Into Giphy API
+        // Set Var for Giphy API
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=AttVip230BugV7EkTVWyqtcdLXTohkOw&q=" + event.target.id + "&limit=10&offset=0&rating=PG&lang=en"
 
         // API Function
@@ -42,14 +42,28 @@ $(document).ready(function () {
             method: "GET",
           }).then(function(response) {
             console.log(response)
-            // console.log(response.data[0].url)
-
-
 
             // Loop for Displaying GIF Responses
             for (var i = 0; i < response.data.length; i++) {
-                $("#topicGIFs").append(`<div class='col-3'><p>Rating: ${response.data[i].rating}</p><img src='${response.data[i].url}' class='GIFs' height='200px' width='200px'></div>`)
+                $("#topicGIFs").append(`<div class="gifDivs"><p>Rating: ${response.data[i].rating}</p><img src='${response.data[i].images.fixed_height_still.url}' data-still='${response.data[i].images.fixed_height_still.url}' data-animate='${response.data[i].images.fixed_height.url}' data-state='still' width='200px' height='200px' class='GIFs'></div>`)
             }
+
+
+            // Function for Playing/Pausing Gifs
+            $(".GIFs").on("click", function() {
+                var state = $(this).attr("data-state");
+    
+                if (state === "still") {
+                  var animateURL = $(this).attr("data-animate")
+                  $(this).attr("src", animateURL);
+                  $(this).attr("data-state", "animate");
+                } 
+
+                else {
+                  $(this).attr("src", $(this).attr("data-still"));
+                  $(this).attr("data-state", "still");
+                }
+            })
 
         })
 
