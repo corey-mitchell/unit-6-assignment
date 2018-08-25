@@ -43,6 +43,7 @@
 
 .topicButtons:active {
     color: black;
+    cursor: pointer;
 }
 
 
