@@ -38,6 +38,7 @@
 
 .topicButtons:hover {
     background-color: #18a56a;
+    cursor: pointer;
 }
 
 .topicButtons:active {
